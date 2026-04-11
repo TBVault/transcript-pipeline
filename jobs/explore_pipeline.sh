@@ -1,5 +1,6 @@
 #!/bin/bash
 # Job: Explore transcript-pipeline structure and /dev/shm/organized_mp3 on igpu15
+# run: 2026-04-11
 
 set -e
 
