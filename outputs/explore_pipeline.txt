@@ -1,0 +1,89 @@
+# WARNING: Job did not reach === DONE === marker
+
+=== 1. Hostname ===
+iGpu15
+=== 2. Conda env ===
+vdabase               *  /home3/kiran/anaconda3/envs/vdabase
+=== 3. Clone repo (if not present) ===
+Cloning into 'transcript-pipeline'...
+=== 4. ls -la /lab/kiran/transcript-pipeline ===
+total 584
+drwxrwxr-x  15 kiran kiran   4096 Apr 11 17:00 .
+drwxr-xr-x 293 kiran kiran 512000 Apr 11 17:00 ..
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 01_preprocessing
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 02_transcription
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 03_timestamp_alignment
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 04_diarization
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 05_speaker_identity
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 06_postprocessing
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 07_evaluation
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 08_utilities
+drwxrwxr-x   8 kiran kiran   4096 Apr 11 17:00 .git
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 jobs
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 maintenance
+-rw-rw-r--   1 kiran kiran   1680 Apr 11 17:00 MIGRATION.md
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 orchestration
+-rw-rw-r--   1 kiran kiran   8198 Apr 11 17:00 README.md
+-rw-rw-r--   1 kiran kiran    291 Apr 11 17:00 requirements.txt
+-rw-rw-r--   1 kiran kiran    548 Apr 11 17:00 SECURITY.md
+drwxrwxr-x   2 kiran kiran   4096 Apr 11 17:00 unfixed
+=== 5. Pipeline subdirectory listings ===
+--- 01_preprocessing ---
+check_mp3_headers.py
+convert_to_16khz.py
+detect_kirtans.py
+__init__.py
+--- 02_transcription ---
+gemini_transcribe.py
+__init__.py
+whisper_transcribe.py
+--- 03_timestamp_alignment ---
+correct_gemini_timesteps.py
+fuzz.py
+greedypushing_postprocess.py
+__init__.py
+--- 04_diarization ---
+diarization_from_segments_local.py
+diar.py
+__init__.py
+split_audio_dia.py
+--- 05_speaker_identity ---
+gen_embeddings.py
+global_clustering.py
+__init__.py
+--- 06_postprocessing ---
+batch_parallel.py
+__init__.py
+speaker_merge.py
+--- 07_evaluation ---
+benchmark_json.py
+docx_to_json.py
+__init__.py
+--- 08_utilities ---
+__init__.py
+--- orchestration ---
+run_batch_gpu.sh
+run_pipeline.sh
+=== 6. /dev/shm/organized_mp3 (first 20) ===
+2016-18_part-1_2018：_A_Retrospective-10156641486771265
+2016-18_part-1_5_Ways_to__Enhance_Your_Devotional_Life_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156592392866265
+2016-18_part-1_60th_Birthday_Celebration_for_Akruranath_Prabhu_and_Bhakta_Vatsal_Prabhu___By_Vaisesika-10156585183581265
+2016-18_part-1_Advanced_Receptivity_@_Salesforce___By_Vaisesika-10156938353066265
+2016-18_part-1_Amending_the_mind’s_Algorithms___By_Vaisesika-10156890680226265
+2016-18_part-1_Ananya_Bhakti’s_First_Grain_Ceremony___By_Vaisesika-10156602371356265
+2016-18_part-1_Announcing_the_launch_of_new_Vaisesika_Dasa_website,_your_source_for_practical_spiritual_inspiration_and_nourishment._Hats_off_to：_Jonathan_Greye_-_An-10156730927346265
+2016-18_part-1_Ask_Vaish_Live_on_Spiritual_Fitness!-10157207510861265
+2016-18_part-1_Balarama’s_Upanayana_Reception_Cupertino_California___By_Vaisesika-10156665471111265
+2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156558749001265
+2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156558821836265
+2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156567834886265
+2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156568214126265
+2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156575498736265
+2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156585639201265
+2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156585717411265
+2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156585742696265
+2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156585820286265
+2016-18_part-1_Bhajan_night_at_ISKCON_Toronto___By_Vaisesika-10156598564936265
+2016-18_part-1_Bhakti_Lounge,_Palo_Alto___By_Vaisesika-10156661604976265
+=== Done ===
+__BRIDGE_EXIT_CODE__0
