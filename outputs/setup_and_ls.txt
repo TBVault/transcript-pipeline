@@ -1,0 +1,27 @@
+# WARNING: Job did not reach === DONE === marker
+
+=== Hostname ===
+iGpu15
+=== Conda env ===
+vdabase               *  /home3/kiran/anaconda3/envs/vdabase
+=== Checking repo ===
+Repo already exists at /lab/kiran/transcript-pipeline
+=== Repo structure (ls) ===
+01_preprocessing
+02_transcription
+03_timestamp_alignment
+04_diarization
+05_speaker_identity
+06_postprocessing
+07_evaluation
+08_utilities
+jobs
+maintenance
+MIGRATION.md
+orchestration
+README.md
+requirements.txt
+SECURITY.md
+unfixed
+=== Done ===
+__BRIDGE_EXIT_CODE__0
