@@ -1,0 +1,11 @@
+# WARNING: Job did not reach === DONE === marker
+
+============================================
+  AUDIO RIP — Govardhan 2025 Playlist
+  Sat Apr 11 08:08:39 PM PDT 2026
+============================================
+>>> Output directory: /lab/kiran/govardhan
+>>> Playlist items: 9-95
+
+/tmp/bridge_job_rip_govardhan_audio.sh: line 23: yt-dlp: command not found
+__BRIDGE_EXIT_CODE__0
