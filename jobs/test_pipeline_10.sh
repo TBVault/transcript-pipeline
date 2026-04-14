@@ -4,9 +4,15 @@
 # runs all stages, writes outputs to /lab/kiran/transcript-pipeline/outputs/
 set -euo pipefail
 
+# ---- Conda init ----
+CONDAROOT=$(cat /lab/kiran/envs/$(hostname).txt)
+export PATH="$CONDAROOT/anaconda3/bin:$CONDAROOT/anaconda3/condabin:$PATH"
+source "$CONDAROOT/anaconda3/etc/profile.d/conda.sh"
+conda activate vdabase
+
 REPO_DIR="$HOME/transcript-pipeline"
 AUDIO_ROOT="/dev/shm/organized_mp3"
-GEMINI_BAK="/lab/kiran/gemini_3.0_flash_bak"
+GEMINI_BAK="/lab/kiran/gemini_3.0_flash"
 BASE_OUT="/lab/kiran/transcript-pipeline/outputs"
 N_TEST=10
 
@@ -46,7 +52,7 @@ python3 - "${TEST_FILES[@]}" <<'PYEOF'
 import sys, json, os
 
 fnames = sys.argv[1:]
-gemini_bak = "/lab/kiran/gemini_3.0_flash_bak"
+gemini_bak = "/lab/kiran/gemini_3.0_flash"
 out_base   = "/lab/kiran/transcript-pipeline/outputs/01_gemini_transcripts"
 
 for fname in fnames:
