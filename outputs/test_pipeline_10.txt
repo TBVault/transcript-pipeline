@@ -1,0 +1,37 @@
+# WARNING: Job did not reach === DONE === marker
+
+=== test_pipeline_10 on iGpu15 at Tue Apr 14 03:21:04 PM PDT 2026 ===
+
+[0/7] Selecting 10 test files...
+Selected 10 files:
+  2016-18_part-1_2018：_A_Retrospective-10156641486771265
+  2016-18_part-1_5_Ways_to__Enhance_Your_Devotional_Life_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156592392866265
+  2016-18_part-1_60th_Birthday_Celebration_for_Akruranath_Prabhu_and_Bhakta_Vatsal_Prabhu___By_Vaisesika-10156585183581265
+  2016-18_part-1_Advanced_Receptivity_@_Salesforce___By_Vaisesika-10156938353066265
+  2016-18_part-1_Amending_the_mind’s_Algorithms___By_Vaisesika-10156890680226265
+  2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156575498736265
+  2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156585639201265
+  2016-18_part-1_Bhakti_Sanga_at_Ogawamura,Nagano___By_Vaisesika-10157247599651265
+  2016-18_part-1_Book_Distribution_Mahā_Yagya_@_ISKCON_Bhaktivedanta_Ashram,_Govardhan___By_Vaisesika-10156531254086265
+  2016-18_part-1_Catch_Your_Own_Jaladuta!___By_Vaisesika-10156605349941265
+
+[1/7] Converting Gemini backup transcripts...
+[SKIP] 2016-18_part-1_2018：_A_Retrospective-10156641486771265
+[SKIP] 2016-18_part-1_5_Ways_to__Enhance_Your_Devotional_Life_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156592392866265
+[SKIP] 2016-18_part-1_60th_Birthday_Celebration_for_Akruranath_Prabhu_and_Bhakta_Vatsal_Prabhu___By_Vaisesika-10156585183581265
+[SKIP] 2016-18_part-1_Advanced_Receptivity_@_Salesforce___By_Vaisesika-10156938353066265
+[SKIP] 2016-18_part-1_Amending_the_mind’s_Algorithms___By_Vaisesika-10156890680226265
+[SKIP] 2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156575498736265
+[SKIP] 2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156585639201265
+[SKIP] 2016-18_part-1_Bhakti_Sanga_at_Ogawamura,Nagano___By_Vaisesika-10157247599651265
+[SKIP] 2016-18_part-1_Book_Distribution_Mahā_Yagya_@_ISKCON_Bhaktivedanta_Ashram,_Govardhan___By_Vaisesika-10156531254086265
+[SKIP] 2016-18_part-1_Catch_Your_Own_Jaladuta!___By_Vaisesika-10156605349941265
+
+[2/7] Running Whisper transcription (GPU 0)...
+[SKIP] whisper 2016-18_part-1_2018：_A_Retrospective-10156641486771265
+  Transcribing: 2016-18_part-1_5_Ways_to__Enhance_Your_Devotional_Life_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156592392866265
+Traceback (most recent call last):
+  File "/lab/kiran/transcript-pipeline/02_transcription/whisper_transcribe.py", line 16, in <module>
+    import whisperx, torch
+ModuleNotFoundError: No module named 'whisperx'
+__BRIDGE_EXIT_CODE__0
