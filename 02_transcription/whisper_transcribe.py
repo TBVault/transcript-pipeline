@@ -15,10 +15,14 @@ import os, sys, json
 from pathlib import Path
 import whisperx, torch
 import omegaconf
+import omegaconf.base, omegaconf.nodes, omegaconf.basecontainer
 # PyTorch 2.6 fix: allow omegaconf globals when loading pyannote VAD model
 torch.serialization.add_safe_globals([
     omegaconf.listconfig.ListConfig,
     omegaconf.dictconfig.DictConfig,
+    omegaconf.base.ContainerMetadata,
+    omegaconf.nodes.ValueNode,
+    omegaconf.basecontainer.BaseContainer,
 ])
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
