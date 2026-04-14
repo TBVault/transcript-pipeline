@@ -11,7 +11,7 @@ Environment:
     GOOGLE_API_KEY      API key for Google Generative AI
     KIRTANTIMES_DIR     Kirtan segment JSONs (to skip non-lecture audio)
 """
-import os, sys, json, subprocess, tempfile, re
+import os, sys, json, subprocess, tempfile, re, time
 from pathlib import Path
 import google.generativeai as genai
 from tenacity import retry, stop_after_attempt, wait_exponential
@@ -73,6 +73,7 @@ def main():
             except Exception as e:
                 print(f"  {t:.0f}s: ERROR {e}")
             t += chunk_dur
+            time.sleep(5)  # Rate limit: stay under 15 RPM (gemini-2.0-flash)
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(all_segments, f, indent=2, ensure_ascii=False)
