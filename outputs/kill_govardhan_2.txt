@@ -1,0 +1,33 @@
+=== kill_govardhan_2.sh — iGpu15 — Tue Apr 14 02:46:46 PM PDT 2026 ===
+>>> Found tmux session govardhan_gemini_only_2 — killing it
+>>> Killed
+>>> PID 61378 still alive — sending kill -9
+>>> PID 61378 killed
+
+=== Checking Job 16 output ===
+EXISTS: /lab/kiran/transcript-pipeline/outputs/test_pipeline_16.txt
+Size: 3876 bytes, 27 lines
+--- last 20 lines ---
+  available_backends = torchaudio.list_audio_backends()
+Loading WhisperX on cuda...
+2026-04-14 14:08:58 - whisperx.vads.pyannote - INFO - Performing voice activity detection using Pyannote...
+Lightning automatically upgraded your loaded checkpoint from v1.5.4 to v2.6.0. To apply the upgrade to your files permanently, run `python -m pytorch_lightning.utilities.upgrade_checkpoint ../../../home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/whisperx/assets/pytorch_model.bin`
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/pyannote/audio/core/io.py:212: UserWarning: torchaudio._backend.list_audio_backends has been deprecated. This deprecation is part of a large refactoring effort to transition TorchAudio into a maintenance phase. The decoding and encoding capabilities of PyTorch for both audio and video are being consolidated into TorchCodec. Please see https://github.com/pytorch/audio/issues/3902 for more information. It will be removed from the 2.9 release. 
+  torchaudio.list_audio_backends()
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/pyannote/audio/utils/reproducibility.py:74: ReproducibilityWarning: TensorFloat-32 (TF32) has been disabled as it might lead to reproducibility issues and lower accuracy.
+It can be re-enabled by calling
+   >>> import torch
+   >>> torch.backends.cuda.matmul.allow_tf32 = True
+   >>> torch.backends.cudnn.allow_tf32 = True
+See https://github.com/pyannote/pyannote-audio/issues/1370 for more details.
+
+  warnings.warn(
+Model was trained with pyannote.audio 0.0.1, yours is 3.4.0. Bad things might happen unless you revert pyannote.audio to 0.x.
+Model was trained with torch 1.10.0+cu102, yours is 2.8.0+cu128. Bad things might happen unless you revert torch to 1.x.
+Transcribing /dev/shm/organized_mp3/2016-18_part-1_2018：_A_Retrospective-10156641486771265/2016-18_part-1_2018：_A_Retrospective-10156641486771265.mp3...
+Aligning...
+[DONE] 2016-18_part-1_2018：_A_Retrospective-10156641486771265: 985 segments -> outputs/02_whisper_transcripts/2016-18_part-1_2018：_A_Retrospective-10156641486771265/transcript.json
+=== DONE ===
+
+=== Done — Tue Apr 14 02:46:46 PM PDT 2026 ===
+__BRIDGE_EXIT_CODE__0
