@@ -1,0 +1,65 @@
+# WARNING: Job did not reach === DONE === marker
+
+=== test_pipeline_13 on iGpu15 at Tue Apr 14 01:57:07 PM PDT 2026 ===
+
+[0/7] Selecting 10 test files...
+Selected 10 files:
+  2016-18_part-1_2018：_A_Retrospective-10156641486771265
+  2016-18_part-1_5_Ways_to__Enhance_Your_Devotional_Life_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156592392866265
+  2016-18_part-1_60th_Birthday_Celebration_for_Akruranath_Prabhu_and_Bhakta_Vatsal_Prabhu___By_Vaisesika-10156585183581265
+  2016-18_part-1_Advanced_Receptivity_@_Salesforce___By_Vaisesika-10156938353066265
+  2016-18_part-1_Amending_the_mind’s_Algorithms___By_Vaisesika-10156890680226265
+  2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156575498736265
+  2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156585639201265
+  2016-18_part-1_Bhakti_Sanga_at_Ogawamura,Nagano___By_Vaisesika-10157247599651265
+  2016-18_part-1_Book_Distribution_Mahā_Yagya_@_ISKCON_Bhaktivedanta_Ashram,_Govardhan___By_Vaisesika-10156531254086265
+  2016-18_part-1_Catch_Your_Own_Jaladuta!___By_Vaisesika-10156605349941265
+
+[1/7] Converting Gemini backup transcripts...
+[SKIP] 2016-18_part-1_2018：_A_Retrospective-10156641486771265
+[SKIP] 2016-18_part-1_5_Ways_to__Enhance_Your_Devotional_Life_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156592392866265
+[SKIP] 2016-18_part-1_60th_Birthday_Celebration_for_Akruranath_Prabhu_and_Bhakta_Vatsal_Prabhu___By_Vaisesika-10156585183581265
+[SKIP] 2016-18_part-1_Advanced_Receptivity_@_Salesforce___By_Vaisesika-10156938353066265
+[SKIP] 2016-18_part-1_Amending_the_mind’s_Algorithms___By_Vaisesika-10156890680226265
+[SKIP] 2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156575498736265
+[SKIP] 2016-18_part-1_Bhagavad_Gita_Discourse_by_HG_Vaisesika_Dasa___ISKCON_of_Silicon_Valley,_USA-10156585639201265
+[SKIP] 2016-18_part-1_Bhakti_Sanga_at_Ogawamura,Nagano___By_Vaisesika-10157247599651265
+[SKIP] 2016-18_part-1_Book_Distribution_Mahā_Yagya_@_ISKCON_Bhaktivedanta_Ashram,_Govardhan___By_Vaisesika-10156531254086265
+[SKIP] 2016-18_part-1_Catch_Your_Own_Jaladuta!___By_Vaisesika-10156605349941265
+
+[2/7] Running Whisper transcription (GPU 0)...
+  Transcribing: 2016-18_part-1_2018：_A_Retrospective-10156641486771265
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/torchvision/io/image.py:13: UserWarning: Failed to load image Python extension: '/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/torchvision/image.so: undefined symbol: _ZN3c1017RegisterOperatorsD1Ev'If you don't plan on using image functionality from `torchvision.io`, you can ignore this warning. Otherwise, there might be something wrong with your environment. Did you have `libjpeg` or `libpng` installed before building `torchvision` from source?
+  warn(
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/pyannote/audio/core/io.py:212: UserWarning: torchaudio._backend.list_audio_backends has been deprecated. This deprecation is part of a large refactoring effort to transition TorchAudio into a maintenance phase. The decoding and encoding capabilities of PyTorch for both audio and video are being consolidated into TorchCodec. Please see https://github.com/pytorch/audio/issues/3902 for more information. It will be removed from the 2.9 release. 
+  torchaudio.list_audio_backends()
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/speechbrain/utils/torch_audio_backend.py:64: UserWarning: torchaudio._backend.list_audio_backends has been deprecated. This deprecation is part of a large refactoring effort to transition TorchAudio into a maintenance phase. The decoding and encoding capabilities of PyTorch for both audio and video are being consolidated into TorchCodec. Please see https://github.com/pytorch/audio/issues/3902 for more information. It will be removed from the 2.9 release. 
+  available_backends = torchaudio.list_audio_backends()
+Loading WhisperX on cuda...
+2026-04-14 13:57:19 - whisperx.vads.pyannote - INFO - Performing voice activity detection using Pyannote...
+Traceback (most recent call last):
+  File "/lab/kiran/transcript-pipeline/02_transcription/whisper_transcribe.py", line 63, in <module>
+    main()
+  File "/lab/kiran/transcript-pipeline/02_transcription/whisper_transcribe.py", line 39, in main
+    model = whisperx.load_model("large-v3", DEVICE, compute_type=COMPUTE_TYPE, language=LANGUAGE)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/whisperx/__init__.py", line 21, in load_model
+    return asr.load_model(*args, **kwargs)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/whisperx/asr.py", line 412, in load_model
+    vad_model = Pyannote(torch.device(device_vad), use_auth_token=None, **default_vad_options)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/whisperx/vads/pyannote.py", line 240, in __init__
+    self.vad_pipeline = load_vad_model(device, use_auth_token=use_auth_token, model_fp=model_fp)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/whisperx/vads/pyannote.py", line 43, in load_vad_model
+    vad_model = Model.from_pretrained(model_fp, use_auth_token=use_auth_token)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/pyannote/audio/core/model.py", line 671, in from_pretrained
+    loaded_checkpoint = pl_load(path_for_pl, map_location=map_location)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/lightning_fabric/utilities/cloud_io.py", line 73, in _load
+    return torch.load(
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/torch/serialization.py", line 1529, in load
+    raise pickle.UnpicklingError(_get_wo_message(str(e))) from None
+_pickle.UnpicklingError: Weights only load failed. This file can still be loaded, to do so you have two options, [1mdo those steps only if you trust the source of the checkpoint[0m. 
+	(1) In PyTorch 2.6, we changed the default value of the `weights_only` argument in `torch.load` from `False` to `True`. Re-running `torch.load` with `weights_only` set to `False` will likely succeed, but it can result in arbitrary code execution. Do it only if you got the file from a trusted source.
+	(2) Alternatively, to load with `weights_only=True` please check the recommended steps in the following error message.
+	WeightsUnpickler error: Unsupported global: GLOBAL omegaconf.base.ContainerMetadata was not an allowed global by default. Please use `torch.serialization.add_safe_globals([omegaconf.base.ContainerMetadata])` or the `torch.serialization.safe_globals([omegaconf.base.ContainerMetadata])` context manager to allowlist this global if you trust this class/function.
+
+Check the documentation of torch.load to learn more about types accepted by default with weights_only https://pytorch.org/docs/stable/generated/torch.load.html.
+__BRIDGE_EXIT_CODE__0
