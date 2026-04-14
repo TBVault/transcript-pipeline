@@ -1,0 +1,105 @@
+# WARNING: Job did not reach === DONE === marker
+
+============================================
+  GOVARDHAN GEMINI TRANSCRIPTION
+  iGpu15 — Tue Apr 14 02:03:13 PM PDT 2026
+  Input:  /lab/kiran/govardhan
+  Output: /lab/kiran/govardhan_transcripts
+============================================
+>>> Found 94 MP3 files
+
+>>> [1/94] 2025-09-29 GR #1
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.0). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+Traceback (most recent call last):
+  File "/lab/kiran/transcript-pipeline/02_transcription/gemini_transcribe.py", line 16, in <module>
+    import google.generativeai as genai
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/generativeai/__init__.py", line 47, in <module>
+    from google.generativeai import caching
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/generativeai/caching.py", line 21, in <module>
+    from google.generativeai import protos
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/generativeai/protos.py", line 74, in <module>
+    from google.ai.generativelanguage_v1beta.types import *
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/__init__.py", line 28, in <module>
+    from .services.model_service import ModelServiceAsyncClient, ModelServiceClient
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/model_service/__init__.py", line 16, in <module>
+    from .async_client import ModelServiceAsyncClient
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/model_service/async_client.py", line 57, in <module>
+    from .client import ModelServiceClient
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/model_service/client.py", line 72, in <module>
+    from .transports.base import DEFAULT_CLIENT_INFO, ModelServiceTransport
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/model_service/transports/__init__.py", line 19, in <module>
+    from .base import ModelServiceTransport
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/ai/generativelanguage_v1beta/services/model_service/transports/base.py", line 21, in <module>
+    from google.api_core import gapic_v1, operations_v1
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/operations_v1/__init__.py", line 17, in <module>
+    from google.api_core.operations_v1.abstract_operations_client import AbstractOperationsClient
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/operations_v1/abstract_operations_client.py", line 22, in <module>
+    from google.api_core.operations_v1.transports.base import (
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/operations_v1/transports/__init__.py", line 29, in <module>
+    from .rest_asyncio import AsyncOperationsRestTransport
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/operations_v1/transports/rest_asyncio.py", line 24, in <module>
+    from google.auth.aio.transport.sessions import AsyncAuthorizedSession  # type: ignore
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/aio/transport/sessions.py", line 27, in <module>
+    from google.auth.aio.transport.aiohttp import Request as AiohttpRequest
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/aio/transport/aiohttp.py", line 23, in <module>
+    import aiohttp  # type: ignore
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/aiohttp/__init__.py", line 6, in <module>
+    from .client import (
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/aiohttp/client.py", line 172, in <module>
+    class _RequestOptions(TypedDict, total=False):
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/aiohttp/client.py", line 199, in _RequestOptions
+    middlewares: Optional[Sequence[ClientMiddlewareType]]
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/typing.py", line 243, in inner
+    return func(*args, **kwds)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/typing.py", line 316, in __getitem__
+    return self._getitem(self, parameters)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/typing.py", line 433, in Optional
+    return Union[arg, type(None)]
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/typing.py", line 243, in inner
+    return func(*args, **kwds)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/typing.py", line 316, in __getitem__
+    return self._getitem(self, parameters)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/typing.py", line 421, in Union
+    parameters = _remove_dups_flatten(parameters)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/typing.py", line 215, in _remove_dups_flatten
+    all_params = set(params)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/typing.py", line 694, in __hash__
+    return hash((self.__origin__, self.__args__))
+TypeError: unhashable type: 'list'
+[FAIL] 2025-09-29 GR #1
+>>> [2/94] 2025-09-29 GR #2
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.0). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+Traceback (most recent call last):
+  File "/lab/kiran/transcript-pipeline/02_transcription/gemini_transcribe.py", line 16, in <module>
+    import google.generativeai as genai
+  File "/home3/kiran/
