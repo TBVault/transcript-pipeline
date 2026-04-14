@@ -17,7 +17,7 @@ import google.generativeai as genai
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 API_KEY = os.getenv("GOOGLE_API_KEY", "")
-MODEL_NAME = "gemini-2.0-flash"
+MODEL_NAME = "gemini-3-flash"
 MAX_CHUNK_SEC = 54.0
 GAP_THRESHOLD = 5.4
 
@@ -73,7 +73,6 @@ def main():
             except Exception as e:
                 print(f"  {t:.0f}s: ERROR {e}")
             t += chunk_dur
-            time.sleep(5)  # Rate limit: stay under 15 RPM (gemini-2.0-flash)
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(all_segments, f, indent=2, ensure_ascii=False)
