@@ -1,5 +1,5 @@
 #!/bin/bash
-# Test Gemini 3.0 Flash transcription with a single Govardhan MP3  # re-run 2026-04-15 fix-env
+# Test Gemini 3-flash-preview transcription with a single Govardhan MP3  # re-run 2026-04-15 model-fix
 set -eo pipefail
 set +u  # bridge wrapper already ran conda init; avoid bashrc unbound-var errors
 echo "=== Gemini 3.0 Flash Single-File Test on $(hostname) at $(date) ==="
@@ -76,6 +76,7 @@ echo ""
 echo ">>> Step 5: Pick first Govardhan MP3 and transcribe"
 INPUT_DIR="/lab/kiran/govardhan"
 OUTPUT_DIR="/lab/kiran/govardhan_transcripts_30test"
+rm -rf "$OUTPUT_DIR"
 mkdir -p "$OUTPUT_DIR"
 
 MP3=$(ls "$INPUT_DIR"/*.mp3 | head -1)
