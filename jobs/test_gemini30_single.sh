@@ -1,5 +1,5 @@
 #!/bin/bash
-# Test Gemini 3.0 Flash transcription with a single Govardhan MP3
+# Test Gemini 3.0 Flash transcription with a single Govardhan MP3  # re-run 2026-04-15 01:04:13
 set -eo pipefail
 set +u  # bridge wrapper already ran conda init; avoid bashrc unbound-var errors
 echo "=== Gemini 3.0 Flash Single-File Test on $(hostname) at $(date) ==="
