@@ -4,6 +4,10 @@ set -eo pipefail
 set +u  # bridge wrapper already ran conda init; avoid bashrc unbound-var errors
 echo "=== Gemini 3.0 Flash Single-File Test on $(hostname) at $(date) ==="
 
+# Load env + API key (same pattern as working govardhan_gemini_25flash.sh)
+source ~/.bashrc
+source /home3/kiran/anaconda3/etc/profile.d/conda.sh && conda activate vdabase
+
 cd /lab/kiran/transcript-pipeline
 
 git fetch origin main
