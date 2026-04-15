@@ -1,10 +1,9 @@
 #!/bin/bash
 # Test Gemini 3.0 Flash transcription with a single Govardhan MP3
 set -eo pipefail
+set +u  # bridge wrapper already ran conda init; avoid bashrc unbound-var errors
 echo "=== Gemini 3.0 Flash Single-File Test on $(hostname) at $(date) ==="
 
-set +u; source ~/.bashrc 2>/dev/null || true; set -u
-source /home3/kiran/anaconda3/etc/profile.d/conda.sh && conda activate vdabase
 cd /lab/kiran/transcript-pipeline
 
 git pull --ff-only 2>/dev/null || true
@@ -78,3 +77,4 @@ fi
 echo ""
 echo "=== TEST PASSED — Gemini 3.0 Flash is working ==="
 echo "=== Safe to run full Govardhan batch ==="
+
