@@ -1,0 +1,102 @@
+# TIMED OUT after 7200s
+# Partial output below:
+
+/tmp/bridge_job_govardhan_gemini_tier2.sh: line 7: /lab/kiran/anaconda3/etc/profile.d/conda.sh: No such file or directory
+============================================
+  GOVARDHAN GEMINI TIER2 (gemini-3-flash)
+  iGpu15 — Tue Apr 14 04:21:31 PM PDT 2026
+============================================
+>>> Found 94 MP3 files
+
+[SKIP] 2025-09-29 GR #1
+[SKIP] 2025-09-29 GR #2
+[SKIP] 2025-09-29 GR #3 The Later Pastimes of Lord Sri Caitanya Mahaprabhu-3
+[SKIP] 2025-09-29 GR #4 The Later Pastimes of Lord Sri Caitanya Mahaprabhu-4
+[SKIP] 2025-09-29 GR #5 The Later Pastimes of Lord Sri Caitanya Mahaprabhu-4
+[SKIP] 2025-09-30 Govardhan Readings#6
+[SKIP] 2025-09-30 GR#7 Sri Caitanya Mahaprabhu’s Stay at the House of Advaita Acharya-1 
+[SKIP] 2025-09-30 GR#8 Sri Caitanya Mahaprabhu’s Stay at the House of Advaita Acharya-2 
+>>> [9/94] 2025-10-01 GR#10 Sri Madhavendra Puri’s Devotional Service-2
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.0). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/lab/kiran/transcript-pipeline/02_transcription/gemini_transcribe.py:16: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+  0s: ERROR RetryError[<Future at 0x7f80b87c3ee0 state=finished raised ResourceExhausted>]
+  54s: ERROR RetryError[<Future at 0x7f80b87d98e0 state=finished raised ResourceExhausted>]
+  108s: ERROR RetryError[<Future at 0x7f80b87e1e80 state=finished raised ResourceExhausted>]
+  162s: ERROR RetryError[<Future at 0x7f80b87e1e20 state=finished raised ResourceExhausted>]
+  216s: ERROR RetryError[<Future at 0x7f80b87c3220 state=finished raised ResourceExhausted>]
+  270s: ERROR RetryError[<Future at 0x7f80b87d9280 state=finished raised ResourceExhausted>]
+  324s: ERROR RetryError[<Future at 0x7f80b87d9910 state=finished raised ResourceExhausted>]
+  378s: ERROR RetryError[<Future at 0x7f80b87ee3d0 state=finished raised ResourceExhausted>]
+  432s: ERROR RetryError[<Future at 0x7f80b87c30d0 state=finished raised ResourceExhausted>]
+  486s: ERROR RetryError[<Future at 0x7f80b877b880 state=finished raised ResourceExhausted>]
+  540s: ERROR RetryError[<Future at 0x7f80b87c3a90 state=finished raised ResourceExhausted>]
+  594s: ERROR RetryError[<Future at 0x7f80b87867f0 state=finished raised ResourceExhausted>]
+  648s: ERROR RetryError[<Future at 0x7f80b87c3160 state=finished raised ResourceExhausted>]
+  702s: ERROR RetryError[<Future at 0x7f80b878e790 state=finished raised ResourceExhausted>]
+  756s: ERROR RetryError[<Future at 0x7f80b87c3b50 state=finished raised ResourceExhausted>]
+  810s: ERROR RetryError[<Future at 0x7f80b879a700 state=finished raised ResourceExhausted>]
+  864s: ERROR RetryError[<Future at 0x7f80b87c3be0 state=finished raised ResourceExhausted>]
+  918s: ERROR RetryError[<Future at 0x7f80b87d9d60 state=finished raised ResourceExhausted>]
+  972s: ERROR RetryError[<Future at 0x7f80b87a41f0 state=finished raised ResourceExhausted>]
+  1026s: ERROR RetryError[<Future at 0x7f80b87a49a0 state=finished raised ResourceExhausted>]
+  1080s: ERROR RetryError[<Future at 0x7f80b87b11f0 state=finished raised ResourceExhausted>]
+  1134s: ERROR RetryError[<Future at 0x7f80b87b1f70 state=finished raised ResourceExhausted>]
+  1188s: ERROR RetryError[<Future at 0x7f80b873a190 state=finished raised ResourceExhausted>]
+  1242s: ERROR RetryError[<Future at 0x7f80b873ad90 state=finished raised ResourceExhausted>]
+  1296s: ERROR RetryError[<Future at 0x7f80b87453a0 state=finished raised ResourceExhausted>]
+  1350s: ERROR RetryError[<Future at 0x7f80b8745be0 state=finished raised ResourceExhausted>]
+  1404s: ERROR RetryError[<Future at 0x7f80b874f400 state=finished raised ResourceExhausted>]
+  1458s: ERROR RetryError[<Future at 0x7f80b874f280 state=finished raised ResourceExhausted>]
+  1512s: ERROR RetryError[<Future at 0x7f80b8745d30 state=finished raised ResourceExhausted>]
+  1566s: ERROR RetryError[<Future at 0x7f80b873ae80 state=finished raised ResourceExhausted>]
+  1620s: ERROR RetryError[<Future at 0x7f80b874f160 state=finished raised ResourceExhausted>]
+  1674s: ERROR RetryError[<Future at 0x7f80b87bceb0 state=finished raised ResourceExhausted>]
+  1728s: ERROR RetryError[<Future at 0x7f80b87b1130 state=finished raised ResourceExhausted>]
+  1782s: ERROR RetryError[<Future at 0x7f80b87c36a0 state=finished raised ResourceExhausted>]
+  1836s: ERROR RetryError[<Future at 0x7f80b87455e0 state=finished raised ResourceExhausted>]
+  1890s: ERROR RetryError[<Future at 0x7f80b874f0d0 state=finished raised ResourceExhausted>]
+  1944s: ERROR RetryError[<Future at 0x7f80b87451f0 state=finished raised ResourceExhausted>]
+  1998s: ERROR RetryError[<Future at 0x7f80b879aa90 state=finished raised ResourceExhausted>]
+  2052s: ERROR RetryError[<Future at 0x7f80b87b1880 state=finished raised ResourceExhausted>]
+  2106s: ERROR RetryError[<Future at 0x7f80b87a4fd0 state=finished raised ResourceExhausted>]
+  2160s: ERROR RetryError[<Future at 0x7f80b8745b80 state=finished raised ResourceExhausted>]
+  2214s: ERROR RetryError[<Future at 0x7f80b879a250 state=finished raised ResourceExhausted>]
+  2268s: ERROR RetryError[<Future at 0x7f80b87c3970 state=finished raised ResourceExhausted>]
+  2322s: ERROR RetryError[<Future at 0x7f80b878e940 state=finished raised ResourceExhausted>]
+  2376s: ERROR RetryError[<Future at 0x7f80b878ea00 state=finished raised ResourceExhausted>]
+  2430s: ERROR RetryError[<Future at 0x7f80b8786f70 state=finished raised ResourceExhausted>]
+  2484s: ERROR RetryError[<Future at 0x7f80b8786040 state=finished raised ResourceExhausted>]
+  2538s: ERROR RetryError[<Future at 0x7f80b877be80 state=finished raised ResourceExhausted>]
+  2592s: ERROR RetryError[<Future at 0x7f80b877b5e0 state=finished raised ResourceExhausted>]
+  2646s: ERROR RetryError[<Future at 0x7f80b87ee400 state=finished raised ResourceExhausted>]
+  2700s: ERROR RetryError[<Future at 0x7f80b87ee310 state=finished raised ResourceExhausted>]
+  2754s: ERROR RetryError[<Future at 0x7f80b87d91f0 state=finished raised ResourceExhausted>]
+  2808s: ERROR RetryError[<Future at 0x7f80b87d9ac0 state=finished raised ResourceExhausted>]
+  2862s: ERROR RetryError[<Future at 0x7f80b877b0a0 state=finished raised ResourceExhausted>]
+  2916s: ERROR RetryError[<Future at 0x7f80b877b670 state=finished raised ResourceExhausted>]
+  2970s: ERROR RetryError[<Future at 0x7f80b87e1910 state=finished raised ResourceExhausted>]
+  3024s: ERROR RetryError[<Future at 0x7f80b8786160 state=finished raised ResourceExhausted>]
+  3078s: ERROR RetryError[<Future at 0x7f80b87d9640 state=finished raised
