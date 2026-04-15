@@ -17,7 +17,7 @@ from google import genai
 from google.genai import types
 
 API_KEY = os.getenv("GOOGLE_API_KEY", "")
-MODEL_NAME = "gemini-3.0-flash"
+MODEL_NAME = "gemini-3-flash-preview"
 MAX_CHUNK_SEC = 54.0
 GAP_THRESHOLD = 5.4
 API_TIMEOUT_SEC = 120

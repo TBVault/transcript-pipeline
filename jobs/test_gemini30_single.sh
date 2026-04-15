@@ -64,9 +64,9 @@ python -c "
 from google import genai
 import os
 client = genai.Client(api_key=os.environ['GOOGLE_API_KEY'])
-resp = client.models.generate_content(model='gemini-3.0-flash', contents='Say hello in one sentence.')
-print(f'gemini-3.0-flash responded: {resp.text}')
-" || echo "NOTE: gemini-3.0-flash returned an error (see above)"
+resp = client.models.generate_content(model='gemini-3-flash-preview', contents='Say hello in one sentence.')
+print(f'gemini-3-flash-preview responded: {resp.text}')
+" || echo "NOTE: gemini-3-flash-preview returned an error (see above)"
 
 echo ""
 echo ">>> Step 4: Verify model name in transcription script"
