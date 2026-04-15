@@ -1,0 +1,118 @@
+# WARNING: Job did not reach === DONE === marker
+
+=== govardhan_gemini_final2 on iGpu15 at Tue Apr 14 07:18:04 PM PDT 2026 ===
+/home3/kiran
+Key length: 39, starts with: AIza...
+>>> Testing API...
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.0). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+<string>:1: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+Hello! How can I help you today?
+============================================
+  GOVARDHAN GEMINI FINAL2
+  iGpu15 — Tue Apr 14 07:18:09 PM PDT 2026
+============================================
+>>> Found 94 MP3 files
+
+[SKIP] 2025-09-29 GR #1
+[SKIP] 2025-09-29 GR #2
+[SKIP] 2025-09-29 GR #3 The Later Pastimes of Lord Sri Caitanya Mahaprabhu-3
+[SKIP] 2025-09-29 GR #4 The Later Pastimes of Lord Sri Caitanya Mahaprabhu-4
+[SKIP] 2025-09-29 GR #5 The Later Pastimes of Lord Sri Caitanya Mahaprabhu-4
+[SKIP] 2025-09-30 Govardhan Readings#6
+[SKIP] 2025-09-30 GR#7 Sri Caitanya Mahaprabhu’s Stay at the House of Advaita Acharya-1 
+[SKIP] 2025-09-30 GR#8 Sri Caitanya Mahaprabhu’s Stay at the House of Advaita Acharya-2 
+[SKIP] 2025-10-01 GR#10 Sri Madhavendra Puri’s Devotional Service-2
+[SKIP] 2025-10-01 GR#11 Sri Madhavendra Puri’s Devotional Service-3
+[SKIP] 2025-10-01 GR#9 Sri Madhavendra Puri's Devotional Service-1
+[SKIP] 2025-10-02 GR#12 The activities pf Sakshi Gopala-1
+[SKIP] 2025-10-02 GR#13.1 The Activities of Sakshi Gopal 
+[SKIP] 2025-10-02 GR#13.2 The Liberation of Sarvabhauma Bhattacharya
+[SKIP] 2025-10-02 GR#14 The Liberation of Sarvabhauma Bhattacharya-2 
+[SKIP] 2025-10-02 GR#15The Liberation of Sarvabhauma Bhattacharya-3
+[SKIP] 2025-10-02 GR#16 The Liberation of Sarvabhauma Bhattacharya-4 
+[SKIP] 2025-10-03 GR#17 The Liberation of Sarvabhauma Bhattacharya-5
+>>> [19/94] 2025-10-03 GR#18 The Liberation of Sarvabhauma Bhattacharya-6
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.0). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/lab/kiran/transcript-pipeline/02_transcription/gemini_transcribe.py:16: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+  import google.generativeai as genai
+  0s: ERROR RetryError[<Future at 0x7f4eb026ac40 state=finished raised NotFound>]
+  54s: ERROR RetryError[<Future at 0x7f4eb027e640 state=finished raised NotFound>]
+  108s: ERROR RetryError[<Future at 0x7f4eb02859a0 state=finished raised NotFound>]
+  162s: ERROR RetryError[<Future at 0x7f4eb0285670 state=finished raised NotFound>]
+  216s: ERROR RetryError[<Future at 0x7f4eb026ad60 state=finished raised NotFound>]
+  270s: ERROR RetryError[<Future at 0x7f4eb026ae20 state=finished raised NotFound>]
+  324s: ERROR RetryError[<Future at 0x7f4eb027eaf0 state=finished raised NotFound>]
+  378s: ERROR RetryError[<Future at 0x7f4eb0292e20 state=finished raised NotFound>]
+  432s: ERROR RetryError[<Future at 0x7f4eb0261be0 state=finished raised NotFound>]
+  486s: ERROR RetryError[<Future at 0x7f4eb026a4c0 state=finished raised NotFound>]
+  540s: ERROR RetryError[<Future at 0x7f4eb0220820 state=finished raised NotFound>]
+  594s: ERROR RetryError[<Future at 0x7f4eb0220820 state=finished raised NotFound>]
+  648s: ERROR RetryError[<Future at 0x7f4eb022cac0 state=finished raised NotFound>]
+  702s: ERROR RetryError[<Future at 0x7f4eb022cac0 state=finished raised NotFound>]
+  756s: ERROR RetryError[<Future at 0x7f4eb02345e0 state=finished raised NotFound>]
+  810s: ERROR RetryError[<Future at 0x7f4eb02345e0 state=finished raised NotFound>]
+  864s: ERROR RetryError[<Future at 0x7f4eb023f580 state=finished raised NotFound>]
+  918s: ERROR RetryError[<Future at 0x7f4eb023fee0 state=finished raised NotFound>]
+  972s: ERROR RetryError[<Future at 0x7f4eb024a5b0 state=finished raised NotFound>]
+  1026s: ERROR RetryError[<Future at 0x7f4eb024aeb0 state=finished raised NotFound>]
+  1080s: ERROR RetryError[<Future at 0x7f4eb0255880 state=finished raised NotFound>]
+  1134s: ERROR RetryError[<Future at 0x7f4eb0255f40 state=finished raised NotFound>]
+  1188s: ERROR RetryError[<Future at 0x7f4eb01df850 state=finished raised NotFound>]
+  1242s: ERROR RetryError[<Future at 0x7f4eb01dfcd0 state=finished raised NotFound>]
+  1296s: ERROR RetryError[<Future at 0x7f4eb01ea7f0 state=finished raised NotFound>]
+  1350s: ERROR RetryError[<Future at 0x7f4eb01eaca0 state=finished raised NotFound>]
+  1404s: ERROR RetryError[<Future at 0x7f4eb01f37f0 state=finished raised NotFound>]
+  1458s: ERROR RetryError[<Future at 0x7f4eb01f3b80 state=finished raised NotFound>]
+  1512s: ERROR RetryError[<Future at 0x7f4eb01eaf70 state=finished raised NotFound>]
+  1566s: ERROR RetryError[<Future at 0x7f4eb01df9a0 state=finished raised NotFound>]
+  1620s: ERROR RetryError[<Future at 0x7f4eb01eae50 state=finished raised NotFound>]
+  1674s: ERROR RetryError[<Future at 0x7f4eb0255400 state=finished raised NotFound>]
+  1728s: ERROR RetryError[<Future at 0x7f4eb01ea6d0 state=finished raised NotFound>]
+  1782s: ERROR RetryError[<Future at 0x7f4eb024ad60 state=finished raised NotFound>]
+  1836s: ERROR RetryError[<Future at 0x7f4eb01ea580 state=finished raised NotFound>]
+  1890s: ERROR RetryError[<Future at 0x7f4eb023fc40 state=finished raised NotFound>]
+  1944s: ERROR RetryError[<Future at 0x7f4eb01ea790 state=fi
