@@ -1,10 +1,9 @@
 #!/bin/bash
 # Govardhan full batch — Gemini 3.0 Flash only (google.genai SDK)
 set -eo pipefail
+set +u  # bridge wrapper already ran conda init; avoid bashrc unbound-var errors
 echo "=== govardhan_gemini_30flash on $(hostname) at $(date) ==="
 
-set +u; source ~/.bashrc 2>/dev/null || true; set -u
-source /home3/kiran/anaconda3/etc/profile.d/conda.sh && conda activate vdabase
 cd /lab/kiran/transcript-pipeline
 
 git pull --ff-only 2>/dev/null || true
@@ -76,3 +75,4 @@ echo "  Transcribed: $DONE  Skipped: $SKIP  Failed: $FAIL"
 echo "  Results in: $OUTPUT_DIR"
 echo "============================================"
 echo "=== DONE ==="
+
