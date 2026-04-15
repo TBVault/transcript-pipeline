@@ -1,0 +1,5 @@
+# WARNING: Job did not reach === DONE === marker
+
+=== govardhan_gemini_30flash on iGpu15 at Tue Apr 14 09:41:05 PM PDT 2026 ===
+/lab/kiran/.bashrc: line 27: debian_chroot: unbound variable
+__BRIDGE_EXIT_CODE__0
