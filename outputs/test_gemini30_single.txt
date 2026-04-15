@@ -1,0 +1,131 @@
+# WARNING: Job did not reach === DONE === marker
+
+=== Gemini 3.0 Flash Single-File Test on iGpu15 at Tue Apr 14 10:13:15 PM PDT 2026 ===
+/home3/kiran
+Sourced API key from /lab/kiran/.gemini_env
+From github.com:TBVault/transcript-pipeline
+ * branch            main       -> FETCH_HEAD
+   af3df98..85b1f8c  main       -> origin/main
+HEAD is now at 85b1f8c fix: source .gemini_env explicitly and add env check before model listing
+
+>>> Env check: GOOGLE_API_KEY is SET (39 chars)AIzaSyC-nplpXg1iubD15e8bWgj8LaYeNgzsE0Y
+
+>>> Step 1: List available Gemini models for this API key
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Available Gemini models:
+  models/gemini-2.5-flash
+  models/gemini-2.5-pro
+  models/gemini-2.0-flash
+  models/gemini-2.0-flash-001
+  models/gemini-2.0-flash-lite-001
+  models/gemini-2.0-flash-lite
+  models/gemini-2.5-flash-preview-tts
+  models/gemini-2.5-pro-preview-tts
+  models/gemini-flash-latest
+  models/gemini-flash-lite-latest
+  models/gemini-pro-latest
+  models/gemini-2.5-flash-lite
+  models/gemini-2.5-flash-image
+  models/gemini-3-pro-preview
+  models/gemini-3-flash-preview
+  models/gemini-3.1-pro-preview
+  models/gemini-3.1-pro-preview-customtools
+  models/gemini-3.1-flash-lite-preview
+  models/gemini-3-pro-image-preview
+  models/gemini-3.1-flash-image-preview
+  models/gemini-robotics-er-1.5-preview
+  models/gemini-robotics-er-1.6-preview
+  models/gemini-2.5-computer-use-preview-10-2025
+  models/gemini-embedding-001
+  models/gemini-embedding-2-preview
+  models/gemini-2.5-flash-native-audio-latest
+  models/gemini-2.5-flash-native-audio-preview-09-2025
+  models/gemini-2.5-flash-native-audio-preview-12-2025
+  models/gemini-3.1-flash-live-preview
+
+>>> Step 2: Filter for 3.0 flash variants
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Gemini 3.0 Flash models found:
+WARNING: No 3.0 flash models found — check the full list above
+
+>>> Step 3: Try gemini-3.0-flash
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+Both GOOGLE_API_KEY and GEMINI_API_KEY are set. Using GOOGLE_API_KEY.
+Traceback (most recent call last):
+  File "<string>", line 5, in <module>
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/genai/models.py", line 5020, in generate_content
+    response = self._generate_content(
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/genai/models.py", line 3832, in _generate_content
+    response = self._api_client.request(
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/genai/_api_client.py", line 1331, in request
+    response = self._request(http_request, http_options, stream=False)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/genai/_api_client.py", line 1167, in _request
+    return self._retry(self._request_once, http_request, stream)  # type: ignore[no-any-return]
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/tenacity/__init__.py", line 477, in __call__
+    do = self.iter(retry_state=retry_state)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/tenacity/__init__.py", line 378, in iter
+    result = action(retry_state)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/tenacity/__init__.py", line 420, in exc_check
+    raise retry_exc.reraise()
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/tenacity/__init__.py", line 187, in reraise
+    raise self.last_attempt.result()
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/concurrent/futures/_base.py", line 433, in result
+    return self.__get_result()
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/concurrent/futures/_base.py", line 389, in __get_result
+    raise self._exception
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/tenacity/__init__.py", line 480, in __call__
+    result = fn(*args, **kwargs)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/genai/_api_client.py", line 1144, in _request_once
+    errors.APIError.raise_for_response(response)
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/genai/errors.py", line 108, in raise_for_response
+    raise ClientError(status_code, response_json, response)
+google.genai.errors.ClientError: 404 NOT_FOUND. {'error': {'code': 404, 'message': 'models/gemini-3.0-flash is not found for API version v1beta, or is not supported for generateContent. Call ListModels to see the list of available models and their supported methods.', 'status': 'NOT_FOUND'}}
+NOTE: gemini-3.0-flash returned an error (see above)
+
+>>> Step 4: Verify model name in transcription script
+MODEL_NAME = "gemini-3.0-flash"
+                model=MODEL_NAME,
+
+>>> Step 5: Pick first Govardhan MP3 and transcribe
+__BRIDGE_EXIT_CODE__0
