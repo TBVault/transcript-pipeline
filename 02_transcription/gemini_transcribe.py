@@ -1,8 +1,8 @@
 """
-gemini_transcribe.py - Gemini Flash Audio Transcription (54s Chunks)
+gemini_transcribe.py - Gemini 3.0 Flash Audio Transcription (54s Chunks)
 
 Splits lecture audio into 54-second chunks grouped by kirtan boundaries,
-sends each to Gemini Flash for high-quality transcription with speaker labels.
+sends each to Gemini 3.0 Flash for high-quality transcription with speaker labels.
 
 Usage:
     python gemini_transcribe.py <audio.mp3> [--output_dir <dir>]
@@ -11,17 +11,19 @@ Environment:
     GOOGLE_API_KEY      API key for Google Generative AI
     KIRTANTIMES_DIR     Kirtan segment JSONs (to skip non-lecture audio)
 """
-import os, sys, json, subprocess, tempfile, re, time
+import os, sys, json, subprocess, tempfile, re, time, signal
 from pathlib import Path
-import google.generativeai as genai
+from google import genai
+from google.genai import types
 from tenacity import retry, stop_after_attempt, wait_exponential
 
 API_KEY = os.getenv("GOOGLE_API_KEY", "")
-MODEL_NAME = "gemini-2.5-flash"
+MODEL_NAME = "gemini-3.0-flash"
 MAX_CHUNK_SEC = 54.0
 GAP_THRESHOLD = 5.4
+API_TIMEOUT_SEC = 120
 
-genai.configure(api_key=API_KEY)
+client = genai.Client(api_key=API_KEY)
 
 def get_duration(path):
     r = subprocess.check_output(["ffprobe", "-v", "error", "-show_entries", "format=duration",
@@ -34,14 +36,28 @@ def extract_chunk(audio_path, start, duration, tmp_dir):
                      "-acodec", "libmp3lame", "-q:a", "4", out], capture_output=True, check=True)
     return out
 
+class APITimeoutError(Exception):
+    pass
+
+def _timeout_handler(signum, frame):
+    raise APITimeoutError(f"Gemini API call timed out after {API_TIMEOUT_SEC}s")
+
 @retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=2, min=5))
 def transcribe_chunk(audio_bytes):
-    model = genai.GenerativeModel(MODEL_NAME)
-    response = model.generate_content([
-        {"mime_type": "audio/mpeg", "data": audio_bytes},
-        "Transcribe this audio. Include speaker labels if multiple speakers. "
-        "Return JSON array: [{\"speaker\": \"name\", \"text\": \"...\", \"start\": seconds, \"end\": seconds}]"
-    ])
+    old_handler = signal.signal(signal.SIGALRM, _timeout_handler)
+    signal.alarm(API_TIMEOUT_SEC)
+    try:
+        response = client.models.generate_content(
+            model=MODEL_NAME,
+            contents=[
+                types.Part.from_bytes(data=audio_bytes, mime_type="audio/mpeg"),
+                "Transcribe this audio. Include speaker labels if multiple speakers. "
+                "Return JSON array: [{\"speaker\": \"name\", \"text\": \"...\", \"start\": seconds, \"end\": seconds}]"
+            ]
+        )
+    finally:
+        signal.alarm(0)
+        signal.signal(signal.SIGALRM, old_handler)
     text = response.text.strip()
     if text.startswith("```"): text = re.sub(r"^```\w*\n?", "", text).rstrip("`").strip()
     return json.loads(text)
