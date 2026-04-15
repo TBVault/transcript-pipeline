@@ -1,12 +1,21 @@
 #!/bin/bash
-# Test Gemini 3.0 Flash transcription with a single Govardhan MP3  # re-run 2026-04-15 01:04:13
+# Test Gemini 3.0 Flash transcription with a single Govardhan MP3  # re-run 2026-04-15 fix-env
 set -eo pipefail
 set +u  # bridge wrapper already ran conda init; avoid bashrc unbound-var errors
 echo "=== Gemini 3.0 Flash Single-File Test on $(hostname) at $(date) ==="
 
-# Load env + API key (same pattern as working govardhan_gemini_25flash.sh)
-source ~/.bashrc
+# Load env + conda
+source ~/.bashrc 2>/dev/null || true
 source /home3/kiran/anaconda3/etc/profile.d/conda.sh && conda activate vdabase
+
+# Explicitly source the Gemini API key — do NOT rely on .bashrc alone
+for envfile in /lab/kiran/.gemini_env ~/.gemini_env /home3/kiran/.gemini_env; do
+    if [[ -f "$envfile" ]]; then
+        source "$envfile"
+        echo "Sourced API key from $envfile"
+        break
+    fi
+done
 
 cd /lab/kiran/transcript-pipeline
 
@@ -15,6 +24,13 @@ git reset --hard origin/main
 
 # Install new SDK if needed
 pip install --quiet 'google-genai>=1.0'
+
+echo ""
+echo ">>> Env check: GOOGLE_API_KEY is ${GOOGLE_API_KEY:+SET (${#GOOGLE_API_KEY} chars)}${GOOGLE_API_KEY:-MISSING}"
+if [[ -z "${GOOGLE_API_KEY:-}" ]]; then
+    echo "FATAL: GOOGLE_API_KEY not found in any env file. Checked: /lab/kiran/.gemini_env, ~/.gemini_env, /home3/kiran/.gemini_env"
+    exit 1
+fi
 
 echo ""
 echo ">>> Step 1: List available Gemini models for this API key"
