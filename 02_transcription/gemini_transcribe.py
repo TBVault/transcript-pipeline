@@ -15,13 +15,14 @@ import os, sys, json, subprocess, tempfile, re, time, signal
 from pathlib import Path
 from google import genai
 from google.genai import types
-from tenacity import retry, stop_after_attempt, wait_exponential
 
 API_KEY = os.getenv("GOOGLE_API_KEY", "")
 MODEL_NAME = "gemini-3.0-flash"
 MAX_CHUNK_SEC = 54.0
 GAP_THRESHOLD = 5.4
 API_TIMEOUT_SEC = 120
+MAX_RETRIES = 5
+BASE_DELAY = 10
 
 client = genai.Client(api_key=API_KEY)
 
@@ -42,25 +43,46 @@ class APITimeoutError(Exception):
 def _timeout_handler(signum, frame):
     raise APITimeoutError(f"Gemini API call timed out after {API_TIMEOUT_SEC}s")
 
-@retry(stop=stop_after_attempt(3), wait=wait_exponential(multiplier=2, min=5))
 def transcribe_chunk(audio_bytes):
-    old_handler = signal.signal(signal.SIGALRM, _timeout_handler)
-    signal.alarm(API_TIMEOUT_SEC)
-    try:
-        response = client.models.generate_content(
-            model=MODEL_NAME,
-            contents=[
-                types.Part.from_bytes(data=audio_bytes, mime_type="audio/mpeg"),
-                "Transcribe this audio. Include speaker labels if multiple speakers. "
-                "Return JSON array: [{\"speaker\": \"name\", \"text\": \"...\", \"start\": seconds, \"end\": seconds}]"
-            ]
-        )
-    finally:
-        signal.alarm(0)
-        signal.signal(signal.SIGALRM, old_handler)
-    text = response.text.strip()
-    if text.startswith("```"): text = re.sub(r"^```\w*\n?", "", text).rstrip("`").strip()
-    return json.loads(text)
+    for attempt in range(MAX_RETRIES):
+        old_handler = signal.signal(signal.SIGALRM, _timeout_handler)
+        signal.alarm(API_TIMEOUT_SEC)
+        try:
+            response = client.models.generate_content(
+                model=MODEL_NAME,
+                contents=[
+                    types.Part.from_bytes(data=audio_bytes, mime_type="audio/mpeg"),
+                    "Transcribe this audio. Include speaker labels if multiple speakers. "
+                    "Return JSON array: [{\"speaker\": \"name\", \"text\": \"...\", \"start\": seconds, \"end\": seconds}]"
+                ],
+            )
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, old_handler)
+            text = response.text.strip()
+            if text.startswith("```"):
+                text = re.sub(r"^```\w*\n?", "", text).rstrip("`").strip()
+            return json.loads(text)
+        except APITimeoutError:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, old_handler)
+            delay = BASE_DELAY * (2 ** attempt)
+            print(f"    Timeout (attempt {attempt+1}/{MAX_RETRIES}), waiting {delay}s...")
+            time.sleep(delay)
+        except Exception as e:
+            signal.alarm(0)
+            signal.signal(signal.SIGALRM, old_handler)
+            if "ResourceExhausted" in str(type(e).__name__) or "429" in str(e) or "resource" in str(e).lower():
+                delay = BASE_DELAY * (2 ** attempt)
+                print(f"    Rate limited (attempt {attempt+1}/{MAX_RETRIES}), waiting {delay}s...")
+                time.sleep(delay)
+            else:
+                if attempt < MAX_RETRIES - 1:
+                    delay = BASE_DELAY * (2 ** attempt)
+                    print(f"    Error {type(e).__name__}: {e}, retrying in {delay}s...")
+                    time.sleep(delay)
+                else:
+                    raise
+    raise RuntimeError(f"Failed after {MAX_RETRIES} attempts")
 
 def main():
     audio_path = sys.argv[1]
@@ -89,6 +111,7 @@ def main():
             except Exception as e:
                 print(f"  {t:.0f}s: ERROR {e}")
             t += chunk_dur
+            time.sleep(1)
 
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump(all_segments, f, indent=2, ensure_ascii=False)
