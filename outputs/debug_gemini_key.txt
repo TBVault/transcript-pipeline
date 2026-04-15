@@ -1,0 +1,80 @@
+=== STEP 1: Check API key ===
+GOOGLE_API_KEY starts with: ...
+GOOGLE_API_KEY length: 0
+
+=== STEP 2: List available flash models ===
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.0). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+<string>:2: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+Traceback (most recent call last):
+  File "<string>", line 4, in <module>
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/os.py", line 679, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'GOOGLE_API_KEY'
+
+=== STEP 3: Test a tiny API call with gemini-2.0-flash ===
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/api_core/_python_version_support.py:246: FutureWarning: You are using a non-supported Python version (3.9.0). Google will not post any further updates to google.api_core supporting this Python version. Please upgrade to the latest Python version, or at least Python 3.10, and then update google.api_core.
+  warnings.warn(message, FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/auth/__init__.py:54: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/site-packages/google/oauth2/__init__.py:40: FutureWarning: 
+    You are using a Python version 3.9 past its end of life. Google will update
+    google-auth with critical bug fixes on a best-effort basis, but not
+    with any other fixes or features. Please upgrade your Python version,
+    and then update google-auth.
+    
+  warnings.warn(eol_message.format("3.9"), FutureWarning)
+<string>:2: FutureWarning: 
+
+All support for the `google.generativeai` package has ended. It will no longer be receiving 
+updates or bug fixes. Please switch to the `google.genai` package as soon as possible.
+See README for more details:
+
+https://github.com/google-gemini/deprecated-generative-ai-python/blob/main/README.md
+
+Traceback (most recent call last):
+  File "<string>", line 4, in <module>
+  File "/home3/kiran/anaconda3/envs/vdabase/lib/python3.9/os.py", line 679, in __getitem__
+    raise KeyError(key) from None
+KeyError: 'GOOGLE_API_KEY'
+
+=== STEP 4: Check what model the transcription script uses ===
+2:gemini_transcribe.py - Gemini Flash Audio Transcription (54s Chunks)
+8:    python gemini_transcribe.py <audio.mp3> [--output_dir <dir>]
+20:MODEL_NAME = "gemini-2.0-flash"
+39:    model = genai.GenerativeModel(MODEL_NAME)
+40:    response = model.generate_content([
+52:    output_dir = sys.argv[3] if len(sys.argv) > 3 and sys.argv[2] == "--output_dir" else f"FTS_MP3_gemini/{stem}"
+82:    if len(sys.argv) < 2: print("Usage: python gemini_transcribe.py <audio.mp3>"); sys.exit(1)
+
+=== STEP 5: Check if any govardhan tmux sessions are still running ===
+govardhan_gemini_v3: 1 windows (created Tue Apr 14 18:19:08 2026)
+
+=== DONE ===
+__BRIDGE_EXIT_CODE__0
