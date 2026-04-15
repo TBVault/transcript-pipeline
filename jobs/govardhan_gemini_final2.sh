@@ -1,17 +1,27 @@
 #!/bin/bash
 echo "=== govardhan_gemini_final2 on $(hostname) at $(date) ==="
 
+# Kill any stuck tmux sessions from previous run
+tmux kill-session -t govardhan_gemini_final 2>/dev/null && echo "Killed stuck tmux session" || echo "No stuck session to kill"
+
 # Load env + API key
 source ~/.bashrc
 source /home3/kiran/anaconda3/etc/profile.d/conda.sh && conda activate vdabase
 cd /lab/kiran/transcript-pipeline
 
+# Pull latest code (has model fix: gemini-2.5-flash)
+git pull --ff-only 2>/dev/null || true
+
+# Verify model fix is in place
+echo ">>> Model name in script:"
+grep MODEL_NAME 02_transcription/gemini_transcribe.py
+
 # Verify key is set
 python -c "import os; k=os.environ.get('GOOGLE_API_KEY',''); print(f'Key length: {len(k)}, starts with: {k[:4]}...')"
 
-# Quick API test before committing to 94 files
-echo ">>> Testing API..."
-python -c "import google.generativeai as genai; import os; genai.configure(api_key=os.environ['GOOGLE_API_KEY']); print(genai.GenerativeModel('gemini-3-flash-preview').generate_content('Say hello').text)"
+# Quick API test with gemini-2.5-flash
+echo ">>> Testing API with gemini-2.5-flash..."
+python -c "import google.generativeai as genai; import os; genai.configure(api_key=os.environ['GOOGLE_API_KEY']); print(genai.GenerativeModel('gemini-2.5-flash').generate_content('Say hello').text)"
 if [ $? -ne 0 ]; then echo "API TEST FAILED — aborting"; exit 1; fi
 
 set -euo pipefail
@@ -21,10 +31,9 @@ INPUT_DIR="/lab/kiran/govardhan"
 OUTPUT_DIR="/lab/kiran/govardhan_transcripts"
 
 cd "$REPO_DIR"
-git pull --ff-only 2>/dev/null || true
 
 echo "============================================"
-echo "  GOVARDHAN GEMINI FINAL2"
+echo "  GOVARDHAN GEMINI FINAL2 (gemini-2.5-flash)"
 echo "  $(hostname) — $(date)"
 echo "============================================"
 
@@ -44,9 +53,15 @@ for mp3 in "${MP3_FILES[@]}"; do
     out_json="$OUTPUT_DIR/${stem}/transcript.json"
 
     if [[ -f "$out_json" ]]; then
-        echo "[SKIP] $stem"
-        (( SKIP++ )) || true
-        continue
+        # Only skip if file has actual content (not empty from failed runs)
+        if [[ -s "$out_json" ]] && python -c "import json,sys; d=json.load(open(sys.argv[1])); assert len(d)>0" "$out_json" 2>/dev/null; then
+            echo "[SKIP] $stem"
+            (( SKIP++ )) || true
+            continue
+        else
+            echo "[REDO] $stem (empty/invalid transcript)"
+            rm -f "$out_json"
+        fi
     fi
 
     echo ">>> [$((DONE+SKIP+FAIL+1))/$TOTAL] $stem"
@@ -64,3 +79,4 @@ echo "  DONE — $(date)"
 echo "  Transcribed: $DONE  Skipped: $SKIP  Failed: $FAIL"
 echo "  Results in: $OUTPUT_DIR"
 echo "============================================"
+echo "=== DONE ==="
