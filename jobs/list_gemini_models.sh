@@ -1,33 +1,40 @@
 #!/bin/bash
-echo "=== list_gemini_models on $(hostname) at $(date) ==="
+set +u
+echo "=== Listing Gemini Flash models on $(hostname) at $(date) ==="
 
-# Match the working govardhan_gemini_final.sh pattern exactly
-source ~/.bashrc
-source /home3/kiran/anaconda3/etc/profile.d/conda.sh && conda activate vdabase
+# Try all possible env file locations
+for f in /lab/kiran/.gemini_env ~/.gemini_env /home3/kiran/.gemini_env; do
+    if [ -f "$f" ]; then
+        echo "Found env file: $f"
+        source "$f"
+        break
+    fi
+done
 
-# Verify key is set
-python -c "import os; k=os.environ.get('GOOGLE_API_KEY',''); print(f'Key length: {len(k)}, starts with: {k[:4]}...')"
+# Also try bashrc
+source ~/.bashrc 2>/dev/null || true
 
-echo ""
-echo ">>> Listing all available Gemini models (filtering for flash and 3.0):"
+# Check if key is available
+if [ -z "${GOOGLE_API_KEY:-}" ]; then
+    echo "ERROR: GOOGLE_API_KEY not set after sourcing all env files"
+    echo "Checking if .gemini_env exists anywhere:"
+    find /lab/kiran /home3/kiran -maxdepth 2 -name "*.gemini*" -o -name "*gemini_env*" 2>/dev/null
+    echo "=== DONE ==="
+    exit 1
+fi
+
+echo "Key found (length: ${#GOOGLE_API_KEY})"
+
+# Activate conda
+source /home3/kiran/anaconda3/etc/profile.d/conda.sh 2>/dev/null && conda activate vdabase 2>/dev/null
+
 python3 -c "
 import os
 from google import genai
-
 client = genai.Client(api_key=os.environ['GOOGLE_API_KEY'])
-all_models = []
-for m in client.models.list():
-    all_models.append(m.name)
-
-print('--- Models containing flash or 3.0 ---')
-for name in sorted(all_models):
-    if 'flash' in name.lower() or '3.0' in name or '3-0' in name:
-        print(name)
-
-print()
-print('--- Full model list ---')
-for name in sorted(all_models):
-    print(name)
+for m in sorted([m.name for m in client.models.list()]):
+    if 'flash' in m.lower() or '3.0' in m or '3-0' in m:
+        print(m)
 "
 
 echo ""
