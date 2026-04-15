@@ -1,8 +1,8 @@
 """
-gemini_transcribe.py - Gemini 3.0 Flash Audio Transcription (54s Chunks)
+gemini_transcribe.py - Gemini 3 Flash Preview Audio Transcription (54s Chunks)
 
 Splits lecture audio into 54-second chunks grouped by kirtan boundaries,
-sends each to Gemini 3.0 Flash for high-quality transcription with speaker labels.
+sends each to Gemini 3 Flash Preview for high-quality transcription with speaker labels.
 
 Usage:
     python gemini_transcribe.py <audio.mp3> [--output_dir <dir>]
@@ -17,7 +17,7 @@ from google import genai
 from google.genai import types
 
 API_KEY = os.getenv("GOOGLE_API_KEY", "")
-MODEL_NAME = "gemini-3-flash-preview"
+MODEL_NAME = "models/gemini-3-flash-preview"
 MAX_CHUNK_SEC = 54.0
 GAP_THRESHOLD = 5.4
 API_TIMEOUT_SEC = 120
