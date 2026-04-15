@@ -1,14 +1,12 @@
 #!/bin/bash
-set +u
 echo "=== list_gemini_models on $(hostname) at $(date) ==="
 
-source ~/.bashrc 2>/dev/null || true
+# Match the working govardhan_gemini_final.sh pattern exactly
+source ~/.bashrc
+source /home3/kiran/anaconda3/etc/profile.d/conda.sh && conda activate vdabase
 
-CONDAROOT=$(cat /lab/kiran/envs/$(hostname).txt)
-export PATH=$CONDAROOT/anaconda3/bin:$CONDAROOT/anaconda3/condabin:$PATH
-source $CONDAROOT/anaconda3/etc/profile.d/conda.sh
-conda activate vdabase
-source /lab/kiran/.gemini_env 2>/dev/null || true
+# Verify key is set
+python -c "import os; k=os.environ.get('GOOGLE_API_KEY',''); print(f'Key length: {len(k)}, starts with: {k[:4]}...')"
 
 echo ""
 echo ">>> Listing all available Gemini models (filtering for flash and 3.0):"
