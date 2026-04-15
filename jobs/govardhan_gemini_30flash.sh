@@ -1,9 +1,9 @@
 #!/bin/bash
 # Govardhan full batch — Gemini 3.0 Flash only (google.genai SDK)
-set -euo pipefail
+set -eo pipefail
 echo "=== govardhan_gemini_30flash on $(hostname) at $(date) ==="
 
-source ~/.bashrc
+set +u; source ~/.bashrc 2>/dev/null || true; set -u
 source /home3/kiran/anaconda3/etc/profile.d/conda.sh && conda activate vdabase
 cd /lab/kiran/transcript-pipeline
 

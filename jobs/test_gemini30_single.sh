@@ -1,9 +1,9 @@
 #!/bin/bash
 # Test Gemini 3.0 Flash transcription with a single Govardhan MP3
-set -euo pipefail
+set -eo pipefail
 echo "=== Gemini 3.0 Flash Single-File Test on $(hostname) at $(date) ==="
 
-source ~/.bashrc
+set +u; source ~/.bashrc 2>/dev/null || true; set -u
 source /home3/kiran/anaconda3/etc/profile.d/conda.sh && conda activate vdabase
 cd /lab/kiran/transcript-pipeline
 
