@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+outputs/
+v2/
+govardhan_related/
+transcript_pipeline/
+transcript_pipeline.zip
+*.nohup
+nohup.out
+.env

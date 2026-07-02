@@ -13,7 +13,7 @@ Environment:
 """
 import os, sys, json
 from pathlib import Path
-import whisperx, torch
+import torch
 import omegaconf
 import omegaconf.base, omegaconf.nodes, omegaconf.basecontainer
 # PyTorch 2.6 fix: allow omegaconf globals when loading pyannote VAD model
@@ -24,6 +24,16 @@ torch.serialization.add_safe_globals([
     omegaconf.nodes.ValueNode,
     omegaconf.basecontainer.BaseContainer,
 ])
+# PyTorch 2.6 ships weights_only=True by default, and the pyannote VAD
+# checkpoint bundled with whisperx pickles globals (typing.Any, ...) that
+# can't all be allowlisted. These are trusted local checkpoints, so force
+# the pre-2.6 behavior (validated in test_pipeline_16).
+_torch_load = torch.load
+def _load_trusted(*args, **kwargs):
+    kwargs["weights_only"] = False  # lightning passes True explicitly; must force
+    return _torch_load(*args, **kwargs)
+torch.load = _load_trusted
+import whisperx
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 BATCH_SIZE = 16
