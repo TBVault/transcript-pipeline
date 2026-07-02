@@ -97,6 +97,16 @@ directory**; the cache is the source of truth and API calls cost money.
 - 2026-07-01: `jobs/whisper_only_finish.sh` launched to finish the remaining
   1,025 uncached files Whisper-only (see below), chaining Stage B + C on
   completion.
+- 2026-07-02: **corpus run COMPLETE.** Whisper pass finished (1,016 new files;
+  8 new `.whisper` markers where VAD found no speech and no Gemini fallback
+  exists). Stage B re-ran to completion (global map: 4,017 lectures, 16
+  identities — unchanged, since the new files' diarizations were already in
+  the June map). Stage C was stopped early ~200 files in on user instruction:
+  redundant, because every final JSON was already merged against a map that
+  covers it. Final accounting: **3,897 final JSONs** + 145 `.nolecture`
+  (genuinely non-lecture) + 9 no-speech stems = all 4,051 mp3s accounted for,
+  zero unprocessed. 1,017 of the final JSONs are Whisper-only (marker file in
+  their fuzz dir); the rest are Gemini+Whisper fused.
 
 ## Whisper-only finisher (`jobs/whisper_only_finish.sh`)
 
