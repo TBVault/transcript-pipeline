@@ -98,8 +98,13 @@ The alignment stage fuses the best of both.
 
 | Script | Purpose |
 |--------|---------|
-| `gen_embeddings.py` | Extract WavLM x-vector embeddings (30s sliding window, L2-normalized) |
-| `global_clustering.py` | Two-level agglomerative clustering: local → global cross-lecture |
+| `embed_and_cluster_diarized.py` | Diarization-aware identity: WavLM centroid per (lecture, SPEAKER_xx) → global cosine clustering → `global_map.json` keyed the way speaker_merge reads it |
+| `sweep_threshold.py` | Pick GLOBAL_THRESH from cached embeddings (no GPU); locked at 0.35 |
+| `gen_embeddings.py` | (superseded) WavLM x-vector embeddings, 30s sliding window |
+| `global_clustering.py` | (superseded) time-index-keyed clustering — its output never matched speaker_merge's SPEAKER_xx lookup; replaced by `embed_and_cluster_diarized.py` |
+
+See [docs/speaker_identity.md](docs/speaker_identity.md) for the full A→B→C
+rollout, the threshold sweep evidence, and operational gotchas.
 
 ### Stage 6: Post-Processing (`06_postprocessing/`)
 
@@ -115,6 +120,20 @@ The alignment stage fuses the best of both.
 | `benchmark_json.py` | WER + Segmentation F1 two-model comparison |
 | `generate_gt.py` | Extract ground truth from Gemini LECTURE segments |
 | `docx_to_json.py` | Convert manual DOCX transcripts to JSON for eval |
+
+## Corpus Operations
+
+The production run over `/lab/kiran/tbv_mp3` is driven by `jobs/tbv_batch_01.sh`
+(idempotent multi-pass orchestrator: Gemini gap-fill lane + 4 GPU whisper/align
+workers, per-file fail markers in `outputs/tbv_failed/`, per-file logs in
+`outputs/tbv_logs/`). The speaker-identity rollout (diarize → embed+cluster →
+re-merge) runs corpus-wide via `jobs/run_speaker_identity.sh` and its watcher
+`jobs/finish_speaker_identity_when_ready.sh`.
+
+- [docs/corpus_run.md](docs/corpus_run.md) — batch design, failure-marker
+  taxonomy, recovery playbook, run history
+- [docs/speaker_identity.md](docs/speaker_identity.md) — speaker pipeline
+  design, GLOBAL_THRESH decision, operational lessons
 
 ## Quick Start
 
@@ -153,6 +172,7 @@ source .env
 - **Gemini + Whisper fusion**: Gemini handles Sanskrit/Bengali and context; Whisper provides sub-second timestamps. NW alignment maps one onto the other.
 - **Two diarization systems**: PyAnnote 3.1 locally (~16% DER) for throughput. DiarizEN WavLM-Conformer (~12.7% DER) for higher-accuracy passes.
 - **Two-level clustering**: Local per-lecture → global cross-lecture for persistent speaker identities.
+- **Binary main-vs-"Audience" identity**: on ~8 kbps source audio, individual audience voices cannot be separated without fragmenting the main speaker (see the threshold sweep in docs/speaker_identity.md), so audience members share generic labels.
 - **108s KIRTAN threshold**: Gaps >108s are kirtan/bhajan interludes, explicitly marked.
 - **2800-char cap**: Downstream search index limit. Long segments split on sentence boundaries.
 
