@@ -42,6 +42,14 @@ run_B() {
         "$PYTHON" "$REPO/05_speaker_identity/embed_and_cluster_diarized.py" \
         "$PYDIR" "$AUDIO" "$GMAP"
     valid_json "$GMAP" && echo "  global_map written: $GMAP" || { echo "  [FAIL] no global_map"; return 1; }
+    # Voiceprint verification replaces the agglomerative map (2026-07-02):
+    # single-threshold clustering absorbed audience/guest speech into MAIN by
+    # chaining. embed_and_cluster still runs first to populate the emb cache.
+    echo "=== Stage B2: voiceprint verification (cluster_verify) ==="
+    MAIN_SPEAKER_NAME="Vaisesika Dasa" \
+        "$PYTHON" "$REPO/05_speaker_identity/cluster_verify.py" \
+        "$OUT/07_speaker_clusters/emb_cache" "$PYDIR" "$GMAP"
+    valid_json "$GMAP" && echo "  verified global_map written: $GMAP" || { echo "  [FAIL] cluster_verify"; return 1; }
 }
 
 run_C() {
