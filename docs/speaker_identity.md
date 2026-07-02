@@ -132,6 +132,28 @@ class), and verification has no chaining pathway for absorption.
   Gotcha: `pkill -f` on the watcher's name matches the shell doing the
   killing — kill it by PID.
 
+## Fusion diarization (pyannote + DiariZen, 2026-07-02)
+
+`04_diarization/diarize_fusion.py` combines two independent segmentations per
+file — pyannote 3.1 (reused from `outputs/05_pyannote_diarization/`, no
+recompute) and DiariZen (`BUT-FIT/diarizen-wavlm-large-s80-md`, WavLM-Conformer
++ VBx clustering, ~12.7% DER vs pyannote's ~16%) — via **DOVER-Lap**
+rank-weighted voting. Output goes to `outputs/06_fusion_diarization/<stem>.txt`
+in the pipeline's native turn format, so the identity stages can consume it
+by pointing `PYANNOTE_TXT_DIR`/`PYANNOTE_OUTPUT_DIR` at the fusion dir.
+Batch runner: `jobs/diarize_fusion_batch.sh` (env `GPUS`, `FUSION_LIMIT`).
+
+Environment (isolated — production envs untouched): overlay venv
+`/lab/kiran/diarizen_venv` built `--system-site-packages` on the `tbv` conda
+env (py3.10, torch 2.8, CUDA OK). Gotchas baked into the scripts:
+`LD_LIBRARY_PATH=/home3/kiran/anaconda3/envs/tbv/lib` (conda libexpat
+mismatch), DiariZen's bundled pyannote fork installed `--no-deps` (official
+3.4 lacks its `config` kwarg), numpy-2.0 alias patches (`np.NaN/NAN → np.nan`)
+applied in the fork clone at `/lab/kiran/DiariZen`, and the torch.load
+monkeypatch must FORCE `weights_only=False` (lightning passes `True`
+explicitly). First smoke test: pyannote 37 turns/2 spk, DiariZen 48/3, fused
+29/2 with cleaner boundaries.
+
 ## Corpus result (2026-06-29)
 
 4,049/4,051 mp3s diarized; 4,017 lectures embedded → 44,442 speaker-centroids
