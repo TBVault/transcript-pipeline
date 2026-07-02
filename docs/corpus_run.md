@@ -89,6 +89,32 @@ directory**; the cache is the source of truth and API calls cost money.
   uncached files.
 - 2026-06-29: speaker-identity watcher logged complete (16 global identities,
   2,693 final JSONs re-merged with real speaker labels).
-- 2026-07-01: batch relaunched **with the API enabled** to transcribe the
-  remaining uncached files. Marker census at relaunch: 145 `.nolecture`
-  (legit non-lecture) + 3 `.whisper` (unrecoverable, no cached content).
+- 2026-07-01: batch briefly relaunched with the API enabled, then **killed
+  during its startup scan (zero API calls made)** when the user issued a
+  standing directive: *no more Google API transcription, ever* — the 3,055-stem
+  cache is final. Marker census at this point: 145 `.nolecture` (legit
+  non-lecture) + 3 `.whisper` (unrecoverable, no cached content).
+- 2026-07-01: `jobs/whisper_only_finish.sh` launched to finish the remaining
+  1,025 uncached files Whisper-only (see below), chaining Stage B + C on
+  completion.
+
+## Whisper-only finisher (`jobs/whisper_only_finish.sh`)
+
+Finishes files that have **no** cached Gemini transcript without touching the
+API. Per file: `whisper_transcribe` → strip segments to `{start,end,text}` →
+write `outputs/04_fuzz_merged/<stem>/transcript.json` (the exact slot
+`speaker_merge` and Stage C read) → `speaker_merge` with the existing pyannote
+diarization and WavLM `global_map.json` → final JSON. Then it chains
+`jobs/run_speaker_identity.sh B C` so the global speaker map and every final
+JSON are refreshed corpus-wide.
+
+- Transcript quality on these files is Whisper-grade (no Gemini fusion); each
+  such fuzz dir carries a `WHISPER_ONLY` marker file for provenance.
+- `WORKERS_PER_GPU` (default 2) × `NUM_GPUS` (4) parallel whisper workers;
+  `TBV_LIMIT=N` smoke-test mode skips the B/C chain.
+- Same fail-marker conventions as the main batch. Expect some `.whisper`
+  markers: whisperx's VAD genuinely finds no speech on some 8 kbps files, and
+  here there is no Gemini fallback — those files simply have no transcript.
+- Defensive check: a pending stem that *does* have a valid Gemini cache is
+  logged `[UNEXPECTED-CACHED]` and skipped rather than silently downgraded to
+  Whisper-only.

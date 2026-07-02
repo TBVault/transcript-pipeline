@@ -130,6 +130,11 @@ workers, per-file fail markers in `outputs/tbv_failed/`, per-file logs in
 re-merge) runs corpus-wide via `jobs/run_speaker_identity.sh` and its watcher
 `jobs/finish_speaker_identity_when_ready.sh`.
 
+**Standing policy (2026-07-01): the Gemini API is no longer called for
+transcription.** The cache at `/lab/kiran/gemini_3.0_flash` is final; files
+without a cached transcript are finished Whisper-only via
+`jobs/whisper_only_finish.sh`.
+
 - [docs/corpus_run.md](docs/corpus_run.md) — batch design, failure-marker
   taxonomy, recovery playbook, run history
 - [docs/speaker_identity.md](docs/speaker_identity.md) — speaker pipeline
