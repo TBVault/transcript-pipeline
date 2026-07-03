@@ -1,5 +1,16 @@
 # Future work
 
+- **TB-scale fleet prep** (survey 2026-07-03, all passwordless-ssh, no
+  permission needed): iGpu21 (2× V100-32G, vdabase OK) ready now; iGpu4
+  (TITAN X + 56 cores, vdabase OK) and iGpu5 (TITAN X + 48 cores — NFS server,
+  use gently) ready for CPU/API stages; iGpu23 (2080 Ti, untested env);
+  iGpu (RTX 3090 Ti — fastest single GPU, but its vdabase lacks whisperx:
+  install needed; envs pointer /lab/kiran/envs/iGpu.txt created); iGpu7
+  broken NVIDIA driver; iGpu25 up per status page but refuses ssh (needs
+  key deployed). Per-machine vdabase envs have DRIFTED — audit/align before
+  fanning out the TB run. Storage: /home2 on iGpu4 is kiran-owned (7T-class
+  local disks exist per machine); /home2 on iGpu15 is root-owned.
+
 - **Banded Needleman-Wunsch in `03_timestamp_alignment/fuzz.py`** — the current
   full O(n·m) score matrix is a pure-Python/numpy loop (CPU-bound despite the
   "GPU-accelerated" docstring). Whisper/Gemini transcripts of the same audio
