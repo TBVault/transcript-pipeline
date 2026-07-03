@@ -172,6 +172,11 @@ with open(sys.argv[1]) as f:
     segs = json.load(f)
 out = []
 for seg in segs:
+    # WHISPER_GROUP items are the raw Gemini segments whose text fuzz already
+    # mapped onto WHISPER_SEGMENTs — including them duplicates every passage
+    # (bug found 2026-07-03: median 2x transcript length corpus-wide).
+    if seg.get("type") == "WHISPER_GROUP":
+        continue
     text = (seg.get("gemini_transcript") or seg.get("whisper_transcript") or "").strip()
     if not text:
         continue
