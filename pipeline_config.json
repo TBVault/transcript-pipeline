@@ -1,0 +1,52 @@
+{
+  "_comment": "Single source of truth for pipeline paths and the frontend export contract. The frontend agent should edit THIS file (not code) to adapt the contract — see docs/output_contract.md and README 'Frontend integration'.",
+
+  "corpus": {
+    "audio_root": "/lab/kiran/tbv_mp3",
+    "main_speaker_name": "Vaisesika Dasa",
+    "main_speaker_slug": "vaisesika-dasa"
+  },
+
+  "pipeline_outputs": {
+    "final_json_dir": "outputs/08_final_json",
+    "fuzz_merged_dir": "outputs/04_fuzz_merged",
+    "diarization_dir": "outputs/05_pyannote_diarization",
+    "fusion_diarization_dir": "outputs/06_fusion_diarization",
+    "global_speaker_map": "outputs/07_speaker_clusters/global_map.json"
+  },
+
+  "export": {
+    "_comment": "export_transcripts.py reads everything below. All field names and formats are configurable so the ingest side can be matched without code changes.",
+    "out_root": "export/transcripts",
+    "manifest": "export/manifest.jsonl",
+    "layout": "{out_root}/{speaker_slug}/{basename}.json",
+    "id_template": "downloads/{speaker_slug}/{basename}.mp3",
+    "timestamp_format": "MM:SS",
+    "_timestamp_note": "MM:SS with unbounded minutes (e.g. 75:42 for 1h15m42s). Set to HH:MM:SS to keep pipeline-native.",
+    "duration_field": "duration",
+    "duration_unit": "minutes_int",
+    "category_default": "lecture",
+    "language_default": "en",
+    "audience_label_slug": false,
+    "_audience_note": "Audience/guest section speakers keep their display label ('Audience 1'); only the file-level speaker uses a slug. Flip to true to slugify section speakers too.",
+    "field_names": {
+      "id": "id",
+      "speaker": "speaker",
+      "title": "title",
+      "category": "category",
+      "language": "language",
+      "duration": "duration",
+      "sections": "sections",
+      "section_speaker": "speaker",
+      "section_start": "start",
+      "section_end": "end",
+      "section_text": "text",
+      "pipeline_meta": "pipeline"
+    }
+  },
+
+  "speaker_slugs": {
+    "_comment": "Valid speaker slugs for the frontend (the app brief mentions 22). Fill in from the app's list; used to validate file-level speakers at export time.",
+    "valid": ["vaisesika-dasa"]
+  }
+}

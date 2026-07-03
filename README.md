@@ -140,6 +140,29 @@ without a cached transcript are finished Whisper-only via
 - [docs/speaker_identity.md](docs/speaker_identity.md) — speaker pipeline
   design, GLOBAL_THRESH decision, operational lessons
 
+## Frontend integration
+
+Everything a consuming app (or its agent) needs is in this repo:
+
+- **`pipeline_config.json`** — single source of truth for paths and the export
+  contract: output layout, stable-id template, timestamp format, field names,
+  valid speaker slugs. **Adapt the contract by editing this file, not code.**
+- **`06_postprocessing/export_transcripts.py`** — reads the config and exports
+  every final JSON to `export/transcripts/<speaker-slug>/<basename>.json`
+  (stable ids, integer-minute duration, MM:SS section timestamps, extra
+  provenance under a `pipeline` key) and appends to `export/manifest.jsonl`
+  (one line per written file: id, path, sha1, updated_at) for delta ingest.
+  Idempotent: re-runs only rewrite files whose source changed; ids are stable
+  so ingest upserts instead of duplicating.
+- **`docs/examples/sample_export.json`** — a real exported document
+  (sections truncated) showing the exact shape.
+- **`docs/output_contract.md`** — the pipeline's native output format and the
+  delta table against the app-side brief, with open questions (speaker-slug
+  list, category vocabulary, verbatim ingest field rules).
+
+To re-export after a pipeline run: `python 06_postprocessing/export_transcripts.py`
+(add `--force` to rewrite everything, `--limit N` to test).
+
 ## Quick Start
 
 ```bash
