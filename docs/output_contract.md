@@ -54,8 +54,10 @@ Schema — an ordered array of single-key objects:
 
 1. Get us the actual `docs/pipeline-integration.md` (copy it into this repo or
    paste it) — the field names/rules from `server/ingest.js` matter verbatim.
-2. The audio NFS (`192.168.1.83:/srv/vani/lectures`) is NOT mounted on iGpu15
-   and we have no sudo — mounting needs an admin, or rsync access instead.
+2. ~~NFS mount~~ resolved: the audio/app live on the user's home server, not
+   this cluster. All paths on both sides are configurable — the exporter takes
+   an output-root arg, and transport between machines is out of scope for the
+   contract.
 3. ~41k files across 22 speakers ≈ 10× the current corpus. Transcription
    policy: Google API is retired for this pipeline (standing directive), so
    new files are Whisper-only unless that changes. GPU-time estimate needed
