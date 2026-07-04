@@ -61,7 +61,9 @@ PYEOF
 }
 export -f process_one
 
-ls -d "$OUT"/04_fuzz_merged/*/ | xargs -P "$WORKERS" -I{} bash -c 'process_one "$@"' _ {}
+# -print0/-0: stems contain apostrophes, which plain xargs treats as quotes
+find "$OUT/04_fuzz_merged" -mindepth 1 -maxdepth 1 -type d -print0 \
+    | xargs -0 -P "$WORKERS" -I{} bash -c 'process_one "$@"' _ {}
 
 echo "--- refuzz pass done at $(date) ---"
 echo "=== re-exporting ==="
