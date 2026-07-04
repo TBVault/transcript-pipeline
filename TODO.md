@@ -1,5 +1,33 @@
 # Future work
 
+## Fusion-algorithm improvements (parked 2026-07-03 — do AFTER model finalization)
+
+Yardstick incoming: the user is preparing a **32-transcript human benchmark**
+and will share it — evaluate every change below against it (replaces the old
+"buy ground truth" suggestion; model-vs-model agreement conflates style with
+error).
+
+1. **Time-banded NW alignment** — the DP is currently time-blind over the whole
+   file; on repetitive text (kirtan: "Hare Kṛṣṇa" x500) it can match phrases
+   30 min apart. Both sides carry timestamps: constrain the DP to a band around
+   the time-predicted diagonal (±2 min drift). Fixes chant-section pathologies
+   AND cuts O(n·m) to O(n·band) — a 10k x 10k lecture drops from a 400 MB
+   matrix to a sliver (matters at 41k files x 16 workers).
+2. **Diacritic-aware token equivalence** — normalizer keeps Unicode letters, so
+   `kṛṣṇa` != `krishna`, `rādhārāṇī` != `radharani`: models render Sanskrit
+   differently and these score as MISMATCHES in the highest-value vocabulary.
+   Transliteration fold (or partial credit for high char-similarity) — ~20 lines.
+3. **Use whisperx word confidences** (currently discarded) — (a) weight
+   gap/mismatch penalties so low-confidence whisper words lose to Gemini
+   cheaply; (b) emit a per-segment "shaky" flag when alignment score and
+   whisper confidence are both low → honest quality metadata for the frontend.
+4. **Anchor-split alignment** — pin unique n-grams occurring exactly once in
+   both transcripts as anchors, align spans between them independently:
+   parallel within a lecture, drift-immune, composes with banding.
+
+Explicitly NOT worth touching per evals: Case A–D bridge heuristics and the
+greedy push (ugly but no attributable failure mode).
+
 - **TB-scale fleet prep** (survey 2026-07-03, all passwordless-ssh, no
   permission needed): iGpu21 (2× V100-32G, vdabase OK) ready now; iGpu4
   (TITAN X + 56 cores, vdabase OK) and iGpu5 (TITAN X + 48 cores — NFS server,
